@@ -4,9 +4,12 @@ Repo for IA measurements
 This is a collection of summary statistics of past direct intrinsic
 alignment measurements, generally using position-shape
 correlation. Whenever possible these measurements will come with
-accompanying clusterign measurements, covariances, and redshift
+accompanying clustering measurements, covariances, and redshift
 distributions, which will allow you to fit your favourite IA model to
 the datasets.
+
+Larger datasets, in particular catalogues, are served through Zenodo:
+https://zenodo.org/communities/echo-ia/
 
 When using a dataset, please cite the corresponding publications. If
 this repo and its tools contributed to your work, please also
