@@ -17,10 +17,10 @@ from scipy.interpolate import interp1d
 
 
 
-min_rp_scale_Mpc_h_wgg = args.min_rp_scale_Mpc_h
-min_rp_scale_Mpc_h_wgp = args.min_rp_scale_Mpc_h
-max_rp_scale_Mpc_h_wgg = args.max_rp_scale_Mpc_h
-max_rp_scale_Mpc_h_wgp = args.max_rp_scale_Mpc_h
+min_rp_scale_Mpc_h_wgg = 5.0
+min_rp_scale_Mpc_h_wgp = 5.0
+max_rp_scale_Mpc_h_wgg = 100.0
+max_rp_scale_Mpc_h_wgp = 100.0
 
 # print(max_rp_scale_Mpc_h_wgg)
 
