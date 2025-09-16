@@ -15,6 +15,7 @@ It also contains utilities for reading and processing the data.
 The corresponding power spectrum can be downloaded from the FLAMINGO project:  
 ➡️ [Power spectra (L2p8_m9)](https://flamingo.strw.leidenuniv.nl/power_spectra.html)
 
+Note: The FLAMINGO data is not yet public, and has been shared here with special permission from the FLAMINGO team. If you want to work more closely with this data, please consider proposing a project to the FLAMINGO team. 
 ---
 
 ## Code
