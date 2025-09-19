@@ -15,7 +15,8 @@ import scipy
 import re
 from scipy.interpolate import interp1d
 
-
+Npatches = 125
+y3fid = FlatLambdaCDM(H0=68.1, Om0=0.306, Ob0=0.0486)
 
 min_rp_scale_Mpc_h_wgg = 5.0
 min_rp_scale_Mpc_h_wgp = 5.0
@@ -26,12 +27,12 @@ max_rp_scale_Mpc_h_wgp = 100.0
 
 run = 'L2800N5040'  # or 'L1000N1800'
 
-wgg_measured = pd.read_hdf(f'/disks/shear16/herle/correlations1/correlations_galaxy_{run}_HYDRO_FIDUCIAL_0.0.h5')[['wgg_rp', 'wgg_xip']]
-wgp_measured = pd.read_hdf(f'/disks/shear16/herle/correlations1/correlations_galaxy_{run}_HYDRO_FIDUCIAL_0.0.h5')[['wgp_rp', 'wgp_xip']]
+wgg_measured = pd.read_hdf(f'/correlations_galaxy_{run}_HYDRO_FIDUCIAL_0.0.h5')[['wgg_rp', 'wgg_xip']]
+wgp_measured = pd.read_hdf(f'/correlations_galaxy_{run}_HYDRO_FIDUCIAL_0.0.h5')[['wgp_rp', 'wgp_xip']]
 
 
-wgg_JK_measured = np.load(f'/disks/shear16/herle/correlations1/wgg_xip_jk_galaxy_{run}_HYDRO_FIDUCIAL_0.0.npy')
-wgp_JK_measured = np.load(f'/disks/shear16/herle/correlations1/wgp_xip_jk_galaxy_{run}_HYDRO_FIDUCIAL_0.0.npy')
+wgg_JK_measured = np.load(f'/wgg_xip_jk_galaxy_{run}_HYDRO_FIDUCIAL_0.0.npy')
+wgp_JK_measured = np.load(f'/wgp_xip_jk_galaxy_{run}_HYDRO_FIDUCIAL_0.0.npy')
 
 min_rp_scale_wgg = min_rp_scale_Mpc_h_wgg / y3fid.h
 min_rp_scale_wgp = min_rp_scale_Mpc_h_wgp / y3fid.h
@@ -64,16 +65,16 @@ cov_mat = ((NPatches - 1) / NPatches) * np.sum(np.einsum('ij,ik->ijk', corr_diff
 cov_mat = pd.DataFrame(data=cov_mat, columns=np.concatenate([wgg_rp_cut, wgp_rp_cut]))
 cov_mat.set_index(np.concatenate([wgg_rp_cut, wgp_rp_cut]), inplace=True)
 
-
-# Put back into a DataFrame with the same structure
 cov_mat = pd.DataFrame(cov_mat, index=cov_mat.index, columns=cov_mat.columns)
-
 cov_mat = cov_mat / (y3fid.h ** 2)
-cov_arr = cov_mat.values  # <<< cache numeric array
-inv_cov = np.linalg.pinv(cov_arr)  # <<< cache inverse once
+cov_arr = cov_mat.values  
+inv_cov = np.linalg.pinv(cov_arr)  
 
 
 wgg_measured["wgg_xip"] /= y3fid.h
 wgp_measured["wgp_xip"] /= y3fid.h
 
-corr = pd.concat([wgg_measured.wgg_xip, wgp_measured.wgp_xip]).to_numpy()  # <<< ensure ndarray
+corr = pd.concat([wgg_measured.wgg_xip, wgp_measured.wgp_xip]).to_numpy()  
+
+# your modeling code goes here
+
